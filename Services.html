@@ -1,77 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0e1117"> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="mobile-web-app-capable" content="yes"> 
-    <meta name="apple-mobile-web-app-capable" content="yes"> 
-  <title>DevSpark - Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#0e1117"> <!-- Sets browser theme color -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- For IE compatibility -->
+    <meta name="mobile-web-app-capable" content="yes"> <!-- For PWA support -->
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- For iOS PWA -->
+    <title>DevSpark - Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+       
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(to bottom right, #1c1f26, #0e1117);
+            color: #e0f7fa;
+            overflow-x: hidden;
+        }
+
+       
+        .desktop-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            background-color: #111827;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 4px 0 15px rgba(0, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: #00e5ff;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00e5ff88;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: #e0f7fa;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #00e5ff22;
+        }
+
+       
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111827;
+            padding: 15px 20px;
+            box-shadow: 0 2px 15px rgba(0, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .mobile-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-logo {
+            font-size: 1.5rem;
+            color: #00e5ff;
+            text-shadow: 0 0 10px #00e5ff88;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #e0f7fa;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #00e5ff22;
+        }
+
+        
+        .container {
+            margin-left: 250px;
+            max-width: 900px;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            color: #00e5ff;
+            text-shadow: 0 0 10px #00e5ff;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 15px;
+            color: #00e5ff;
+        }
+
+        p {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            line-height: 1.7;
+            color: #b0e3f2;
+            margin-bottom: 30px;
+        }
+
+        
+        .subjects {
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .subjects span {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #1e293b;
+            color: #00e5ff;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #00e5ff33;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 1rem;
+        }
+
+        .subjects span:hover {
+            transform: scale(1.05);
+            background-color: #223344;
+        }
+
+        
+        .pricing {
+            font-size: 1.1rem;
+            color: #80d8ff;
+            margin-bottom: 40px;
+            text-align: left;
+            background-color: #1a2233;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #00e5ff33;
+        }
+
+        .pricing ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .pricing li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .pricing li:before {
+            content: "💠";
+            position: absolute;
+            left: 0;
+        }
+
+        .pricing strong {
+            color: #00e5ff;
+        }
+
+        
+        .terms {
+            background-color: #1a2233;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #00e5ff33;
+            color: #b0e3f2;
+            text-align: left;
+        }
+
+        .terms ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .terms li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .terms li:before {
+            content: "🔹";
+            position: absolute;
+            left: 0;
+        }
+
+        
+        .footer {
+            margin-left: 250px;
+            background-color: #111827;
+            color: #80d8ff;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.95rem;
+            border-top: 1px solid #00e5ff33;
+            box-shadow: 0 -2px 10px rgba(0, 229, 255, 0.1);
+        }
+
+       
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .container {
+                margin-left: 0;
+                padding: 100px 20px 20px;
+            }
+            
+            .footer {
+                margin-left: 0;
+            }
+
+            .subjects {
+                gap: 10px;
+            }
+
+            .subjects span {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 90px 15px 15px;
+            }
+            
+            .subjects span {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .pricing, .terms {
+                padding: 20px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
+   
+    <nav class="desktop-nav">
+        <div class="logo">DevSpark</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Contact us.html">Contact</a>
+        </div>
+    </nav>
 
-  <nav>
-    <div class="logo">DevSpark </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="Services.html">Services</a>
-      <a href="Contact us.html">Contact</a>
-    </div>
-  </nav>
-
-  <div class="container">
-    <h1>Our Services</h1>
-    <p>Explore our services in programming education and project assistance:</p>
-
-    <div class="subjects">
-      <span>Python</span>
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>Java</span>
-      <span>.NET</span>
-      <span>C#</span>
-      <span>SQL</span>
-      <span>Kotlin</span>
-      <span>App Development</span>
-      <span>Assignments Help</span>
-      <span>1-on-1 Classes</span>
-    </div>
     
-    <div class="pricing">
-      <h2>Pricing & Packages</h2>
-      <ul>
-        <li><strong>📚Online Classes</strong></li>
-        <li><strong>Desktop App Assignment:</strong> R250 per app</li>
-        <li><strong>🎓 Full Monthly Package (Assignments + Classes):</strong> R350/month</li>
-        <li><strong>📝 Assignments (Python, Java, C#, Web, SQL):</strong> R150</li>
-        <li><strong>🧑‍🏫 Classes Only:</strong> R250 per month</li>
-      </ul>
+    <nav class="mobile-nav">
+        <div class="mobile-nav-container">
+            <div class="mobile-logo">DevSpark</div>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Contact us.html">Contact</a>
+        </div>
+    </nav>
+
+    
+    <div class="container">
+        <h1>Our Services</h1>
+        <p>Explore our services in programming education and project assistance:</p>
+
+        <div class="subjects">
+            <span>Python</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Java</span>
+            <span>.NET</span>
+            <span>C#</span>
+            <span>SQL</span>
+            <span>Kotlin</span>
+            <span>App Development</span>
+            <span>Assignments Help</span>
+            <span>1-on-1 Classes</span>
+        </div>
+
+        
+        <div class="pricing">
+            <h2>Pricing & Packages</h2>
+            <ul>
+                <li><strong>📚 Online Classes</strong></li>
+                <li><strong>Desktop App Assignment:</strong> R250 per app</li>
+                <li><strong>🎓 Full Monthly Package (Assignments + Classes):</strong> R350/month</li>
+                <li><strong>📝 Assignments (Python, Java, C#, Web, SQL):</strong> R150</li>
+                <li><strong>🧑‍🏫 Classes Only:</strong> R250 per month</li>
+            </ul>
+        </div>
+
+       
+        <div class="terms">
+            <h2>Terms & Conditions</h2>
+            <p>When submitting a project, please ensure the following:</p>
+            <ul>
+                <li>All project details and requirements must be clearly specified up front</li>
+                <li>A deposit is required before work begins, and the final amount is paid upon completion</li>
+                <li>Specify the required IDE (e.g., IntelliJ, VS Code, etc.)</li>
+                <li>Kotlin projects are supported</li>
+                <li><strong>Android Studio is not supported</strong> due to system limitations</li>
+            </ul>
+        </div>
     </div>
 
-    <div class="terms">
-      <h2>Terms & Conditions</h2>
-      <p>
-        When submitting a project, please ensure the following:
-      </p>
-      <ul>
-        <li>All project details and requirements must be clearly specified up front.</li>
-        <li>A deposit is required before work begins, and the final amount is paid upon completion.</li>
-        <li>Specify the required IDE (e.g., IntelliJ, VS Code, etc.).</li>
-        <li>Kotlin projects are supported.</li>
-        <li><strong>Android Studio is not supported</strong> due to system limitations.</li>
-      </ul>
-    </div>
-  </div>
+    <footer class="footer">
+        <p>&copy; 2025 DevSpark. All rights reserved.</p>
+        <p>Powered by passion & technology. Contact us anytime via WhatsApp.</p>
+    </footer>
 
-   <footer class="footer">
-    <p>&copy; 2025 DevSpark. All rights reserved.</p>
-    <p>Powered by passion & technology. Contact us anytime via WhatsApp.</p>
-  </footer>
-
-
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
