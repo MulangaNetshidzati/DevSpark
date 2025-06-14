@@ -1,0 +1,240 @@
+/* futuristic-rounded.css */
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(to bottom right, #1c1f26, #0e1117);
+  color: #e0f7fa;
+  overflow-x: hidden;
+}
+
+/* === Side Navigation === */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 220px;
+  background-color: #111827;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 4px 0 15px rgba(0, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: #00e5ff;
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px #00e5ff88;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.nav-links a {
+  color: #e0f7fa;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #00e5ff22;
+}
+
+/* === Main Container === */
+.container {
+  margin-left: 250px;
+  max-width: 900px;
+  padding: 50px 30px;
+  text-align: center;
+}
+
+/* === Headings & Paragraphs === */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #00e5ff;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #b0e3f2;
+  margin-bottom: 30px;
+}
+
+/* === Subjects Section === */
+.subjects {
+  margin-bottom: 30px;
+}
+
+.subjects span {
+  display: inline-block;
+  margin: 8px;
+  padding: 10px 20px;
+  background-color: #1e293b;
+  color: #00e5ff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00e5ff33;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.subjects span:hover {
+  transform: scale(1.1);
+  background-color: #223344;
+}
+
+/* === Pricing Section === */
+.pricing {
+  font-size: 1.1rem;
+  color: #80d8ff;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.pricing h2 {
+  color: #00e5ff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.pricing ul {
+  list-style-type: "💠 ";
+  padding-left: 20px;
+}
+
+.pricing ul li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* === Terms and Conditions === */
+.terms {
+  background-color: #1a2233;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #00e5ff33;
+  color: #b0e3f2;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.terms h2 {
+  color: #00e5ff;
+  margin-bottom: 15px;
+}
+
+.terms ul {
+  list-style-type: "🔹 ";
+  padding-left: 20px;
+}
+
+.terms ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* === Input Fields & Buttons === */
+.input-field {
+  background: #1c2a38;
+  border: 1px solid #00e5ff55;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 10px;
+  color: #00e5ff;
+  font-size: 1rem;
+  width: 80%;
+  max-width: 300px;
+}
+
+.glow-btn,
+.donate-btn,
+.pay-btn,
+.whatsapp-btn {
+  padding: 14px 35px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  background: #00e5ff;
+  color: #001f2e;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 0 20px #00e5ff66;
+  transition: all 0.3s ease;
+}
+
+.glow-btn:hover,
+.donate-btn:hover,
+.pay-btn:hover,
+.whatsapp-btn:hover {
+  background-color: #00bcd4;
+  box-shadow: 0 0 30px #00e5ffaa;
+  transform: scale(1.05);
+}
+
+/* === Responsive Fix (Mobile) === */
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .container {
+    margin-left: 0;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .subjects span {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+.footer {
+  margin-left: 250px;
+  background-color: #111827;
+  color: #80d8ff;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.95rem;
+  border-top: 1px solid #00e5ff33;
+  box-shadow: 0 -2px 10px rgba(0, 229, 255, 0.1);
+}
