@@ -1,69 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0e1117"> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <meta name="mobile-web-app-capable" content="yes"> 
-    <meta name="apple-mobile-web-app-capable" content="yes"> 
-  <title>DevSpark - Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#0e1117"> <!-- Sets browser theme color -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- For IE compatibility -->
+    <meta name="mobile-web-app-capable" content="yes"> <!-- For PWA support -->
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- For iOS PWA -->
+    <title>DevSpark - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* === Base Styles === */
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(to bottom right, #1c1f26, #0e1117);
+            color: #e0f7fa;
+            overflow-x: hidden;
+        }
+
+        /* === Desktop Side Navigation === */
+        .desktop-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 220px;
+            background-color: #111827;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 4px 0 15px rgba(0, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: #00e5ff;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00e5ff88;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: #e0f7fa;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #00e5ff22;
+        }
+
+        /* === Mobile Top Navigation === */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111827;
+            padding: 15px 20px;
+            box-shadow: 0 2px 15px rgba(0, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .mobile-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-logo {
+            font-size: 1.5rem;
+            color: #00e5ff;
+            text-shadow: 0 0 10px #00e5ff88;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: #00e5ff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #e0f7fa;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #00e5ff22;
+        }
+
+        /* === Main Content === */
+        .container {
+            margin-left: 250px;
+            max-width: 900px;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            color: #00e5ff;
+            text-shadow: 0 0 10px #00e5ff;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 15px;
+            color: #00e5ff;
+        }
+
+        p {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            line-height: 1.7;
+            color: #b0e3f2;
+            margin-bottom: 30px;
+        }
+
+        /* === Buttons === */
+        .whatsapp-btn {
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            background: #00e5ff;
+            color: #001f2e;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 0 20px #00e5ff66;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #00bcd4;
+            box-shadow: 0 0 30px #00e5ffaa;
+            transform: scale(1.05);
+        }
+
+        /* === Footer === */
+        .footer {
+            margin-left: 250px;
+            background-color: #111827;
+            color: #80d8ff;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.95rem;
+            border-top: 1px solid #00e5ff33;
+            box-shadow: 0 -2px 10px rgba(0, 229, 255, 0.1);
+        }
+
+        /* === Responsive Design === */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .container {
+                margin-left: 0;
+                padding-top: 100px;
+            }
+            
+            .footer {
+                margin-left: 0;
+            }
+        }
+
+        /* === Content Styles === */
+        section {
+            margin-bottom: 40px;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+            padding-left: 20px;
+            line-height: 1.6;
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        ul li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 15px;
+            height: 15px;
+            background-color: #00e5ff;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <div class="logo">DevSpark</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Contact us.html">Contact</a>
+        </div>
+    </nav>
 
-  <nav>
-    <div class="logo">DevSpark</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="Services.html">Services</a>
-      <a href="Contact us.html">Contact</a>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-container">
+            <div class="mobile-logo">DevSpark</div>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Contact us.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to DevSpark</h1>
+        <p>Empowering you with skills in programming, app development, and web technologies through personalized and flexible learning experiences.</p>
+
+        <section>
+            <h2>What We Offer</h2>
+            <p>At DevSpark, we specialize in the following:</p>
+            <ul>
+                <li>One-on-one coding classes (Python, Java, Web, SQL, C#)</li>
+                <li>Full project support & assignments (school, college, university)</li>
+                <li>Mobile app development using Kotlin (We don't support Android Studio due to <strong>System Requirements</strong>)</li>
+                <li>Affordable monthly packages for ongoing learners</li>
+                <li>Quick turnaround for urgent coding tasks</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Why Choose Us?</h2>
+            <p>We understand every student is different. That's why our approach is tailored and flexible:</p>
+            <ul>
+                <li>Real-time support via WhatsApp</li>
+                <li>Classes via Google Meet</li>
+                <li>Step-by-step explanations for beginners</li>
+                <li>Exam and practical prep for students</li>
+                <li>Language-friendly for South African learners</li>
+                <li>Available after-hours for working or busy students</li>
+            </ul>
+        </section>
+
+        <section>
+            <p style="font-size: 1.3rem;">📱 Ready to get started? Reach out now on WhatsApp for quick help!</p>
+            <a href="https://wa.me/27817117190" target="_blank">
+                <button class="whatsapp-btn">Chat on WhatsApp</button>
+            </a>
+        </section>
     </div>
-  </nav>
 
-  <div class="container">
-    <h1>Welcome to DevSpark</h1>
-    <p>Empowering you with skills in programming, app development, and web technologies through personalized and flexible learning experiences.</p>
+    <footer class="footer">
+        <p>&copy; 2025 DevSpark. All rights reserved.</p>
+        <p>Powered by passion & technology. Contact us anytime via WhatsApp.</p>
+    </footer>
 
-    <section>
-      <h2>What We Offer</h2>
-      <p>At DevSpark, we specialize in the following:</p>
-      <ul style="text-align: left; max-width: 700px; margin: 0 auto; padding-left: 20px; line-height: 1.6;">
-        <li>✔️ One-on-one coding classes (Python, Java, Web, SQL, C#)</li>
-        <li>✔️ Full project support & assignments (school, college, university)</li>
-        <li>✔️ Mobile app development using Kotlin and We dont support Android Studio due to <strong>System Requirements</strong></li>
-        <li>✔️ Affordable monthly packages for ongoing learners</li>
-        <li>✔️ Quick turnaround for urgent coding tasks</li>
-      </ul>
-    </section>
-
-    <section style="margin-top: 40px;">
-      <h2>Why Choose Us?</h2>
-      <p>We understand every student is different. That’s why our approach is tailored and flexible:</p>
-      <ul style="text-align: left; max-width: 700px; margin: 0 auto; padding-left: 20px; line-height: 1.6;">
-        <li>👨‍🏫 Real-time support via WhatsApp</li>
-        <li>👨‍🏫 Classes via Google Meet</li>
-        <li>💡 Step-by-step explanations for beginners</li>
-        <li>🧠 Exam and practical prep for students</li>
-        <li>💬 Language-friendly for South African learners</li>
-        <li>🕒 Available after-hours for working or busy students</li>
-      </ul>
-    </section>
-
-    <section style="margin-top: 50px;">
-      <p style="font-size: 1.3rem;">📱 Ready to get started? Reach out now on WhatsApp for quick help!</p>
-      <a href="https://wa.me/27817117190" target="_blank">
-        <button class="whatsapp-btn">Chat on WhatsApp</button>
-      </a>
-    </section>
-  </div>
-
-   <footer class="footer">
-    <p>&copy; 2025 DevSpark. All rights reserved.</p>
-    <p>Powered by passion & technology. Contact us anytime via WhatsApp.</p>
-  </footer>
-
-
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
