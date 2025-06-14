@@ -30,6 +30,7 @@ nav {
   color: #00e5ff;
   margin-bottom: 40px;
   text-shadow: 0 0 10px #00e5ff88;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -52,12 +53,12 @@ nav {
   background-color: #00e5ff22;
 }
 
-/* Mobile menu button */
+
 .menu-toggle {
   display: none;
   position: fixed;
   top: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 1100;
   background: #00e5ff;
   color: #001f2e;
@@ -76,9 +77,15 @@ nav {
   max-width: 900px;
   padding: 50px 30px;
   text-align: center;
+  transition: margin 0.3s ease;
 }
 
-/* === Headings & Paragraphs === */
+.welcome-message {
+  margin-top: 0;
+  padding-top: 20px;
+}
+
+
 h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 20px;
@@ -99,7 +106,7 @@ p {
   margin-bottom: 30px;
 }
 
-/* === Subjects Section === */
+
 .subjects {
   margin-bottom: 30px;
   display: flex;
@@ -123,7 +130,7 @@ p {
   background-color: #223344;
 }
 
-/* === Pricing Section === */
+
 .pricing {
   font-size: 1.1rem;
   color: #80d8ff;
@@ -147,7 +154,6 @@ p {
   font-size: 1.1rem;
 }
 
-/* === Terms and Conditions === */
 .terms {
   background-color: #1a2233;
   padding: 25px;
@@ -213,7 +219,7 @@ p {
   transform: scale(1.05);
 }
 
-/* === Footer === */
+
 .footer {
   margin-left: 250px;
   background-color: #111827;
@@ -223,9 +229,10 @@ p {
   font-size: 0.95rem;
   border-top: 1px solid #00e5ff33;
   box-shadow: 0 -2px 10px rgba(0, 229, 255, 0.1);
+  transition: margin 0.3s ease;
 }
 
-/* === Responsive Design === */
+
 @media (max-width: 992px) {
   .container {
     max-width: 100%;
@@ -251,28 +258,66 @@ p {
 
   .container {
     margin-left: 0;
-    padding-top: 80px;
+    padding: 80px 20px 20px;
+  }
+
+  .welcome-message {
+    padding-top: 0;
+    margin-top: 20px;
   }
 
   .footer {
     margin-left: 0;
+    padding: 20px 10px;
   }
 
   .input-field {
     width: 90%;
   }
+
+  .logo {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    top: 15px;
+    left: 15px;
+  }
+
+  .container {
+    padding: 70px 15px 15px;
+  }
+
   .glow-btn,
   .donate-btn,
   .pay-btn,
   .whatsapp-btn {
     padding: 12px 25px;
     font-size: 1rem;
+    margin: 8px;
   }
 
   .terms {
     padding: 15px;
+  }
+
+  .subjects span {
+    padding: 8px 15px;
+    font-size: 0.9rem;
   }
 }
